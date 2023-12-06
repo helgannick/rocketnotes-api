@@ -69,6 +69,7 @@ class NotesController {
 
       notes = await knex("tags")
         .select(["notes.id", "notes.title", "notes.user_id"])
+        .groupBy("name")
         .where("notes.user_id", user_id)
         .whereLike("notes.title", `%${title}%`)
         .whereIn("name", filterTags)
